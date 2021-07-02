@@ -10,15 +10,15 @@ public class SQLHelper {
     private static final String password = "pass";
 
     public static void cleanTables() {
-        String deleteOrderEntity = "delete from order_entity;";
-        String deletePaymentEntity = "delete from payment_entity;";
-        String deleteCreditEntity = "delete from credit_request_entity;";
+        String codeSQL = "DELETE from order_entity;";
+        String codeSQL2 = "DELETE from payment_entity;";
+        String codeSQL3 = "DELETE from credit_request_entity;";
 
         try (
                 Connection connection = DriverManager.getConnection(url, user, password);
-                PreparedStatement orderEntity = connection.prepareStatement(deleteOrderEntity);
-                PreparedStatement paymentEntity = connection.prepareStatement(deletePaymentEntity);
-                PreparedStatement creditEntity = connection.prepareStatement(deleteCreditEntity);
+                PreparedStatement orderEntity = connection.prepareStatement(codeSQL);
+                PreparedStatement paymentEntity = connection.prepareStatement(codeSQL2);
+                PreparedStatement creditEntity = connection.prepareStatement(codeSQL3);
         ) {
             orderEntity.executeUpdate();
             paymentEntity.executeUpdate();
