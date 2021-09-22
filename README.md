@@ -5,6 +5,8 @@
 docker-compose up
 ```
 #### Запуск SUT
+При запуске используется GitBash, где вводятся следующие команды:
+
 postgresql:
 ```
 DB_URL=jdbc:postgresql://localhost:5432/app java -jar artifacts/aqa-shop.jar
