@@ -25,12 +25,13 @@ allure {
     }
 
     dependencies {
-        testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
-        testImplementation 'com.codeborne:selenide:5.19.0'
+        implementation 'org.jetbrains:annotations:22.0.0'
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+        testImplementation 'com.codeborne:selenide:5.24.4'
         testImplementation 'com.github.javafaker:javafaker:1.0.2'
-        testImplementation 'io.qameta.allure:allure-selenide:2.14.0'
-        testImplementation 'mysql:mysql-connector-java:8.0.24'
-        testImplementation 'postgresql:postgresql:9.0-801.jdbc4'
+        testImplementation 'io.qameta.allure:allure-selenide:2.15.0'
+        testImplementation 'mysql:mysql-connector-java:8.0.25'
+        testImplementation 'postgresql:postgresql:9.3-1102.jdbc41'
 
         compileOnly 'org.projectlombok:lombok:1.18.20'
         annotationProcessor 'org.projectlombok:lombok:1.18.20'
