@@ -31,7 +31,7 @@ allure {
         testImplementation 'com.github.javafaker:javafaker:1.0.2'
         testImplementation 'io.qameta.allure:allure-selenide:2.15.0'
         testImplementation 'mysql:mysql-connector-java:8.0.25'
-        testImplementation 'postgresql:postgresql:9.3-1102.jdbc41'
+        testImplementation 'postgresql:postgresql:9.0-801.jdbc4'
 
         compileOnly 'org.projectlombok:lombok:1.18.20'
         annotationProcessor 'org.projectlombok:lombok:1.18.20'
