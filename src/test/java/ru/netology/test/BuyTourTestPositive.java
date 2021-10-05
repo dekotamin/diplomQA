@@ -10,13 +10,14 @@ import ru.netology.data.SQLHelper;
 import ru.netology.page.StartPage;
 
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class BuyTourTest {
     Card cardApproved = new Card();
     Card cardDecline = new Card();
 
-    @AfterEach
+    @BeforeEach
     void cleanTables() {
         SQLHelper.cleanTables();
     }
@@ -39,6 +40,8 @@ public class BuyTourTest {
         setCardApproved();
         paymentPage.pullData(cardApproved);
         paymentPage.checkOperationOk();
+        assertEquals("APPROVED", SQLHelper.selectBuyStatus());
+
     }
 
     @DisplayName("2. Заполнить все поля валидными данными для покупки в кредит")
@@ -49,6 +52,7 @@ public class BuyTourTest {
         setCardApproved();
         creditPage.pullData(cardApproved);
         creditPage.checkOperationOk();
+        assertEquals ("approved", SQLHelper.selectCreditStatus());
     }
 
     @DisplayName("3. Заполнить поле 'Имя' именем через дефис и фамилией при покупке")
@@ -57,7 +61,7 @@ public class BuyTourTest {
         val startPage = open("http://localhost:8080", StartPage.class);
         val paymentPage = startPage.goPaymentPage();
         setCardApproved();
-        cardApproved.setHolder("Иван-Иван Иванов");
+        cardApproved.setHolder("Ivan-Ivan Ivanov");
         paymentPage.pullData(cardApproved);
         paymentPage.checkOperationOk();
     }
@@ -68,7 +72,7 @@ public class BuyTourTest {
         val startPage = open("http://localhost:8080", StartPage.class);
         val creditPage = startPage.goCreditPage();
         setCardApproved();
-        cardApproved.setHolder("Иван-Иван Иванов");
+        cardApproved.setHolder("Ivan-Ivan Ivanov");
         creditPage.pullData(cardApproved);
         creditPage.checkOperationOk();
     }
@@ -200,7 +204,7 @@ public class BuyTourTest {
         val startPage = open("http://localhost:8080", StartPage.class);
         val paymentPage = startPage.goPaymentPage();
         setCardApproved();
-        cardApproved.setHolder("Иван");
+        cardApproved.setHolder("Ivan");
         paymentPage.pullData(cardApproved);
         paymentPage.checkOperationError();
     }
@@ -211,29 +215,30 @@ public class BuyTourTest {
         val startPage = open("http://localhost:8080", StartPage.class);
         val creditPage = startPage.goCreditPage();
         setCardApproved();
-        cardApproved.setHolder("Иван");
+        cardApproved.setHolder("Ivan");
         creditPage.pullData(cardApproved);
         creditPage.checkOperationError();
     }
 
-    @DisplayName("18. Заполнить поле 'Владелец' на латинице при покупке в кредит")
+    @DisplayName("18. Заполнить поле 'Владелец' на кириллице при покупке в кредит")
     @Test
     void shouldHaveNameCreditOnABC() {
         val startPage = open("http://localhost:8080", StartPage.class);
         val creditPage = startPage.goCreditPage();
         setCardApproved();
-        cardApproved.setHolder("Anna Vasina");
+        cardApproved.setHolder("Анна Васина");
         creditPage.pullData(cardApproved);
         creditPage.checkOperationError();
+        creditPage.checkOperationOk();
     }
 
-    @DisplayName("19. Заполнить поле 'Владелец' на латинице при покупке")
+    @DisplayName("19. Заполнить поле 'Владелец' на кириллице при покупке")
     @Test
     void shouldHaveNameOnABC() {
         val startPage = open("http://localhost:8080", StartPage.class);
         val paymentPage = startPage.goPaymentPage();
         setCardApproved();
-        cardApproved.setHolder("Anna Vasina");
+        cardApproved.setHolder("Анна Васина");
         paymentPage.pullData(cardApproved);
         paymentPage.checkOperationError();
     }
