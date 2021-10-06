@@ -50,6 +50,11 @@ public class CreditPaymentPage {
         return true;
     }
 
+    public boolean invalidNameFormatMessage() {
+        invalidFormat.shouldHave(Condition.exactText("Поле обязательно для заполнения"));
+        return true;
+    }
+
     public boolean yearExpiredErrorMessage() {
         invalidFormat.shouldHave(Condition.exactText("Истёк срок действия карты"));
         return true;

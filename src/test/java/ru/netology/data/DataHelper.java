@@ -1,7 +1,6 @@
 package ru.netology.data;
 
-
-import com.github.javafaker.Faker;
+import com.github.javafaker.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +9,7 @@ import java.util.Locale;
 
 public class DataHelper {
 
-    public static Faker faker = new Faker(new Locale("ru"));
+    public static Faker faker = new Faker(new Locale("en"));
 
     public static String approvedCardNumber() {
         return "4444444444444441";
@@ -46,8 +45,10 @@ public class DataHelper {
     }
 
     public static String validYear() {
-        int year = faker.number().numberBetween(22, 27);
-        return Integer.toString(year);
+        LocalDate date = LocalDate.now().plusYears(2);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy");
+        String year = date.format(formatter);
+        return year;
     }
 
     public static String validCvc() {

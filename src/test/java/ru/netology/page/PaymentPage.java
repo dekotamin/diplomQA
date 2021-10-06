@@ -44,6 +44,11 @@ public class PaymentPage {
         notificationError.shouldBe(Condition.visible, Duration.ofMillis(15000));
     }
 
+    public boolean invalidNameFormatMessage() {
+        invalidFormat.shouldHave(Condition.exactText("Поле обязательно для заполнения"));
+        return true;
+    }
+
     public boolean invalidCardFormatMessage() {
         invalidFormat.shouldHave(Condition.exactText("Неверный формат"));
         return true;
